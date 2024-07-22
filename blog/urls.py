@@ -13,4 +13,5 @@ urlpatterns = [
     path("message/edit/<int:pk>", views.MessageUpdateView.as_view(), name="message_edit"),
     path("message/delete/<int:pk>", views.MessageDeleteView.as_view(), name="message_delete"),
     path("like/<slug:slug>/<int:pk>", views.like, name="like"),
+    path("comment/create/<slug:slug>", views.CommentCreateView.as_view(), name="comment_create"),
 ]

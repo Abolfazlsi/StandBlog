@@ -113,6 +113,31 @@ class ArticleDetailView(DetailView):
         return context
 
 
+class CommentCreateView(CreateView):
+    model = Comment
+    fields = ['body', 'parent']
+    template_name = 'blog/comment_form.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.article = Article.objects.get(slug=self.kwargs['slug'])
+        if form.instance.parent:
+            form.instance.parent = Comment.objects.get(id=form.instance.parent.id)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('blog:article-detail', kwargs={'slug': self.kwargs['slug']})
+
+
+class CommentListView(ListView):
+    model = Comment
+    template_name = 'blog/comment_list.html'
+    context_object_name = 'comments'
+
+    def get_queryset(self):
+        return Comment.objects.filter(article__slug=self.kwargs['slug'], parent=None)
+
+
 class ArticleListView(ListView):
     model = Article
     context_object_name = "articles"
@@ -173,4 +198,3 @@ def like(request, slug, pk):
     except:
         Like.objects.create(article_id=pk, user_id=request.user.id)
         return JsonResponse({"response": "liked"})
-
