@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "includes/head_references.html" %}
+</head>
+<style>
+    .sidebar-item.comments .content ul li {
+        display: block;
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+
+<!-- ***** Preloader Start ***** -->
+<div id="preloader">
+    <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- Header -->
+{% include "includes/header.html" %}
+
+{% block content %}
+
+
+{% endblock %}
+
+{% include "includes/footer.html" %}
+
+<!-- Bootstrap core JavaScript -->
+{% include "includes/js_references.html" %}
+
+</body>
+</html>

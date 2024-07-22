@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="heading-page header-text">
+        <section class="page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <h4>Article Details</h4>
+                            <h2>{{ article.title }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="blog-posts grid-system">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="all-blog-posts">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {% include 'blog/comment_list.html' %}
+                            </div>
+                            <div class="col-lg-12">
+                                {% include 'blog/comment_form.html' %}
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="sidebar-item submit-comment">
+                                    <div class="sidebar-heading">
+                                        <h2 id="comment">Your comment</h2>
+                                    </div>
+                                    <div class="content">
+                                        <form id="comment" action="#" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="parent_id" id="parent_id">
+                                            <div class="row">
+                                                {% if errors %}
+                                                    {% for error in errors %}
+                                                        <p class="text text-danger">{{ error }}</p>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                <div class="col-lg-12">
+                                                    <fieldset>
+                                                        <textarea name="body" rows="6" id="body"
+                                                                  placeholder="Type your comment"
+                                                                  required=""></textarea>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <fieldset>
+                                                        <button type="submit" id="form-submit" class="main-button">
+                                                            Submit
+                                                        </button>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include "includes/sidebar.html" %}
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function set_value(id) {
+            document.getElementById("body").placeholder = "Type Your Reply";
+            document.getElementById("parent_id").value = id;
+            window.location.href = "#body"
+        }
+    </script>
+{% endblock %}
+
+

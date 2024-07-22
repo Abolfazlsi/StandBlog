@@ -1,0 +1,6 @@
+{% for item in objects %}
+    <li><a href="">
+        <a href="{{ item.get_absolute_url }}"><h5>{{ item.title }}</h5></a>
+        <span>{{ item.created }}</span>
+    </a></li>
+{% endfor %}
