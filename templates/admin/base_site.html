@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %}مدیریت وبلاگ{% endblock %}
+
+{% block branding %}
+    <div id="site-name"><a href="{% url 'admin:index' %}">مدیریت وبلاگ</a></div>
+    {% if user.is_anonymous %}
+        {% include "admin/color_theme_toggle.html" %}
+    {% endif %}
+{% endblock %}
+{% block extrastyle %}<link rel="stylesheet" href="{% static "css/override.css" %}" type="text/css">{% endblock %}
+{% block nav-global %}{% endblock %}
