@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
 
+{% load static %}
+{% load social_share %}
 {% block title %}
     {{ article.title }}
 {% endblock %}
@@ -29,10 +30,115 @@
                     <div class="all-blog-posts">
                         <div class="row">
                             <div class="col-lg-12">
-                                {% include 'blog/comment_list.html' %}
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                        <img src="{{ article.image.url }}" alt="">
+                                    </div>
+                                    <div class="down-content">
+                                        <span>Lifestyle</span>
+                                        <a href="#"><h4>{{ article.title }}</h4></a>
+                                        <ul class="post-info">
+                                            <li><a href="#">{{ article.auther.get_full_name }}</a></li>
+                                            <li><a href="#">{{ article.created }}</a></li>
+                                            <li><a href="#">{{ article.comments.all.count }} comments</a></li>
+                                        </ul>
+                                        <p>
+                                            {{ article.body }}
+                                        </p>
+                                        <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <ul class="post-tags">
+                                                        {% if is_liked %}
+                                                            <li>
+                                                                <a onclick="like('{{ article.slug }}', '{{ article.id }}')"><i
+                                                                        id="like"
+                                                                        style="font-size: 20px"
+                                                                        class="fa fa-heart"></i><span
+                                                                        id="count">{{ article.likes.all.count }}</span>
+                                                                </a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li>
+                                                                <a onclick="like('{{ article.slug }}', '{{ article.id }}')"><i
+                                                                        id="like"
+                                                                        style="font-size: 20px"
+                                                                        class="fa fa-heart-o"></i><span
+                                                                        id="count">{{ article.likes.all.count }}</span>
+                                                                </a>
+                                                            </li>
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                                <div class="col-6">
+                                                    <ul class="post-share">
+                                                        <li><i class="fa fa-share-alt"></i></li>
+                                                        <li>{% post_to_whatsapp article.get_absolute_url "whatsapp" %}</li>
+                                                        ,
+                                                        <li>{% post_to_telegram "telegram" article.get_absolute_url %}</li>
+                                                        ,
+                                                        <li>{% post_to_facebook article.get_absolute_url "facebook" %}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-12">
-                                {% include 'blog/comment_form.html' %}
+                                <div class="sidebar-item comments">
+                                    <div class="sidebar-heading">
+                                        <h2>{{ article.comments.all.count }} comments</h2>
+                                    </div>
+                                    <div class="content">
+                                        <ul>
+                                            {% for comment in article.comments.all %}
+                                                {% if comment.parent == None %}
+                                                    <li>
+                                                        <div class="author-thumb">
+                                                            {% if comment.author.profile.image %}
+                                                                <img src="{{ comment.author.profile.image.url }} "
+                                                                     style="border-radius: 100%" width="50px"
+                                                                     height="50px">
+                                                            {% else %}
+                                                                <img src="{% static "accounts/img/d_profile.png" %}"
+                                                                     width="100px" height="100px">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="right-content">
+                                                            <h4>
+                                                                {{ comment.author }}<span>{{ comment.created }}</span>
+                                                            </h4>
+                                                            <p>{{ comment.body }}</p>
+                                                            <button onclick="set_value({{ comment.id }})"
+                                                                    class="btn btn-primary">reply
+                                                            </button>
+                                                        </div>
+                                                    </li>
+                                                {% endif %}
+                                                {% for reply in comment.replies.all %}
+                                                    <li class="replied">
+                                                        <div class="author-thumb">
+                                                            {% if reply.author.profile.image %}
+                                                                <img src="{{ reply.author.profile.image.url }}"
+                                                                     style="border-radius: 100% " width="50px"
+                                                                     height="50px">
+                                                            {% else %}
+                                                                <img src="{% static "accounts/img/d_profile.png" %}"
+                                                                     width="50px" height="50px">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="right-content">
+                                                            <h4>{{ reply.author }}<span>{{ reply.created }}</span>
+                                                            </h4>
+                                                            <p>{{ reply.body }}</p>
+                                                        </div>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="sidebar-item submit-comment">

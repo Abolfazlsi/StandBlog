@@ -16,6 +16,13 @@ def article_detail(request, slug):
         "article": article,
         "errors": []
     }
+
+    if request.user.is_authenticated:
+        if request.user.likes.filter(article__slug=slug, user_id=request.user.id).exists():
+            context["is_liked"] = True
+        else:
+            context["is_liked"] = False
+
     if request.method == "POST":
         body = request.POST.get("body")
         parent_id = request.POST.get("parent_id")
@@ -113,31 +120,6 @@ class ArticleDetailView(DetailView):
         return context
 
 
-class CommentCreateView(CreateView):
-    model = Comment
-    fields = ['body', 'parent']
-    template_name = 'blog/comment_form.html'
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        form.instance.article = Article.objects.get(slug=self.kwargs['slug'])
-        if form.instance.parent:
-            form.instance.parent = Comment.objects.get(id=form.instance.parent.id)
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse('blog:article-detail', kwargs={'slug': self.kwargs['slug']})
-
-
-class CommentListView(ListView):
-    model = Comment
-    template_name = 'blog/comment_list.html'
-    context_object_name = 'comments'
-
-    def get_queryset(self):
-        return Comment.objects.filter(article__slug=self.kwargs['slug'], parent=None)
-
-
 class ArticleListView(ListView):
     model = Article
     context_object_name = "articles"
@@ -157,7 +139,7 @@ class ContactUsView(FormView):
 
 class MessageView(CreateView):
     model = ContactUs
-    fields = ("title", "text", "age")
+    fields = ("title", "text")
     success_url = reverse_lazy("home:home")
 
     def form_valid(self, form):

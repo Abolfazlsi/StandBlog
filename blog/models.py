@@ -82,7 +82,6 @@ class ContactUs(models.Model):
     title = models.CharField(max_length=100, null=True, verbose_name="عنوان")
     text = models.TextField(verbose_name="پیام")
     email = models.EmailField(verbose_name="ایمیل")
-    age = models.IntegerField(default=0, verbose_name="سن")
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
