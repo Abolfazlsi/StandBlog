@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d5bab78-e3bb-4d5b-a34d-0da32e0a31cf" name="Changes" comment="lose">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/article_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/article_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/article_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/article_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/comment_form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/comment_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/contact_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/contact_us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/contactus_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/contactus_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/articles/night.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/articles/night_ww4nX3y.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/articles/photo_2024-04-20_20-50_RSIuekB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/sidebar.html" afterDir="false" />
-    </list>
+    <list default="true" id="0d5bab78-e3bb-4d5b-a34d-0da32e0a31cf" name="Changes" comment="lose" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -215,6 +198,7 @@
       <workItem from="1721669202364" duration="3752000" />
       <workItem from="1721673135514" duration="4145000" />
       <workItem from="1721746331367" duration="1155000" />
+      <workItem from="1721748217314" duration="21000" />
     </task>
     <task id="LOCAL-00001" summary="add a test text">
       <option name="closed" value="true" />
