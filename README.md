@@ -1,2 +1,2 @@
 # StandBlog
-Project of the blog.
+made with Django framework.
